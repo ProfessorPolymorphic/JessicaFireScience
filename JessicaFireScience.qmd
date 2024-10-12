@@ -1,0 +1,154 @@
+---
+title: "FIRESTARS"
+format:
+  html:
+    embed-resources: true
+code-tools: true
+---
+
+# GOAL
+
+Assemble a list of faculty whose research is strategically aligned with the FIRESTARS proposal.
+
+# PROPOSAL SYNOPSIS
+
+### Developing Research Capabilities in Wildland Fire: Fostering Interdisciplinary Research and Strategic Training for Advancing Resilient Systems (FIRESTARS).
+
+**Proposing Unit:** College of Natural Resources
+
+**Proposing Team:** Jessica Miesel (CNR FRFS), Assoc. Prof., Director, IFIRE Combustion Laboratory; Alistair Smith (CNS ESS), Professor and Department Chair; Leda Kobziar (CNR FRFS), Assoc. Prof., Director of Master in Natural Resources Program; Amy Skibiel (CALS, AVFS), Assoc. Prof. 
+
+### Project Summary:
+
+Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. 
+
+To further strengthen UI’s widely recognized leadership in wildland fire research and education in the natural sciences and human dimensions, we believe that UI can step into a strategically important role in addressing questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. 
+
+This VPRED proposal seeks strategic investment for expanding research capabilities that contribute to our ongoing initiative to Foster Interdisciplinary Research and Strategic Training for Advancing Resilient Systems related to wildland fire (FIRESTARS). Our specific objectives for this VPRED application are to:
+
+1.	Expand IFIRE Combustion Laboratory capabilities to enable foundational research necessary to address wildfire impacts on human health and animal health; and
+
+2.	Leverage the current and proposed IFIRE Combustion Laboratory capabilities to develop collaborative research events for early-career researchers within and beyond UI, with deliverables that contribute to new externally sponsored research.
+
+Our long-term vision is to support and expand UI’s leadership in fire science across the full breadth of scientific disciplines, from the physical sciences to the humanities. Strategic investment in expanding research capabilities and partnerships for investigating wildfire impacts on human health will achieve lasting impact by augmenting the University of Idaho’s status as a leader in wildland fire research and education with new leadership in human health-smoke relationships. This investment will provide unique opportunities for UI faculty and students and attract partnerships that lead to significant new external funding streams.
+
+# ASSEMBLING RELATED FACULTY 
+
+## Graduate Advisors
+
+This data set is a list of advisors from Jessica.  These advisors have mentored at least one student whose thesis or dissertation contained keywords relevant to fire science.
+
+```{r}
+#| include: false
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+advisors <- read_excel("Advisors.xlsx")%>%
+   separate(Advisors, into = c("Last", "First"), sep = ", ", remove = FALSE)%>%
+   mutate(Name = paste(First, Last))%>%
+   mutate(Advisor = 1)
+```
+
+## Semantic Analysis
+
+These lists are the faculty identified using the UI Collaboration Net prototype using the query specified for each group: Fire, Health, and Vector Borne Disease.
+
+### Semantic Similarity: Fire Science
+
+**Query**: Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. 
+
+```{r}
+Fire <- read.csv("fire.csv")%>%
+  rename(Fire = Relevance)
+
+knitr::kable(Fire)
+```
+
+### Semantic Health
+
+**Query:** Health effects of smoke, fire, forest fire.  Health and safety of fire fighting professionals.  Onehealth concepts as they relate to forest fires. RESEARCH questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. 
+
+```{r}
+Health <- read.csv("health.csv")%>%
+  rename(Health = Relevance)
+
+knitr::kable(Health)
+```
+
+### Semantic Vector Disease
+
+**Query:** Vector borne diseases, especially ticks and tick borne diseases.  Onehealth concepts related to vector borne disease.  Effects of fire, smoke, and fire prevention on vector borne disease and infectious disease, including empirical research in wildlife and humans.  Modeling of infectious diseases, disease ecology, and spatial modeling of disease risk.
+
+**NOTE** My semantic network tool is not working today (Saturday).  I'll have to run this query when the nerds get it fixed.
+
+## Integrated List of Faculty
+
+Now we integrate the faculty lists from each data source, maintaining their source affiliations as either a boolean (for advisors) or as the number of semantically relevant publications to each query (for the Semantic Analyses).
+
+```{r}
+Master_List <- advisors%>%
+  select(Name, Advisor)%>%
+  full_join(Fire, by = "Name")%>%
+  full_join(Health, by = "Name")
+
+knitr::kable(Master_List)
+```
+
+# RESEARCH EXPENDITURES
+
+This analysis uses the exported data for each PI from the sponsored expeditures dashboard (which has very limited access).  The data represent expenditures for each researcher on projects where they are the Principal Investigator.  These data therefore provide only a partial picture as to the research activity of the faculty in question.  Grants on which faculty are CoPI, or where they have some other significant collaborative role, are not associated with their expenditures.  [Proceed with caution]{.red}.
+
+
+```{r}
+#| include: false
+path <- "Expenditures"
+
+csv_files <- list.files(path = path, pattern = "*.csv", full.names = TRUE)
+
+Expenditures <- csv_files %>%
+  map_dfr(read_csv)
+```
+
+```{r}
+Expenditures_grant <- Expenditures %>%
+  group_by(`Grant Code`, `PI's Name`, `PI's Home Dept`, `TITLE`, `Sponsor`) %>%
+  summarise(Total = sum(`Total Expenditure`, na.rm = TRUE),
+            IDC = sum(`Overhead`, na.rm = TRUE))
+
+write.csv(Expenditures_grant, file = "Expenditures_grant.csv")
+
+Expenditures_PI <- Expenditures %>%
+  group_by(`PI's Name`, `PI's Home Dept`) %>%
+  summarise(Total = sum(`Total Expenditure`, na.rm = TRUE),
+            IDC = sum(`Overhead`, na.rm = TRUE))%>%
+  rename(Name=`PI's Name`)
+
+write.csv(Expenditures_PI, file = "Expenditures_PI.csv")
+
+knitr::kable(Expenditures_PI)
+```
+
+
+
+## Merging Expenditures
+
+Let's merge the expenditures data into the Master List so we have a table with additional context.
+
+```{r}
+Master_Expenditures <- Master_List%>%
+  full_join(Expenditures_PI, by = "Name")
+
+knitr::kable(Master_Expenditures)
+```
+
+There are quite a few faculty who are derived from the Advisors list that do not show up in the Expenditures analysis.  There are a couple reasons for this.  First, there are faculty that are no longer at the UI (prominent examples being John Abotzaglu and Krystal Colden).  Second, some of these faculty may not have had active research grants as PI since FY 2019.  I'll go ahead an remove those types of people from the list to make things more concise.
+
+```{r}
+Master_Final <- Master_Expenditures%>%
+  filter(is.na(`PI's Home Dept`) == FALSE)
+
+knitr::kable(Master_Final)
+```
+
