@@ -3,6 +3,8 @@ title: "FIRESTARS"
 format:
   html:
     embed-resources: true
+    toc: true
+    toc-location: left
 code-tools: true
 ---
 
