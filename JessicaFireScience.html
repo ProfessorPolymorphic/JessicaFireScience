@@ -3327,19 +3327,129 @@ vertical-align: -.125em;
 <section id="semantic-vector-disease" class="level3">
 <h3 class="anchored" data-anchor-id="semantic-vector-disease">Semantic Vector Disease</h3>
 <p><strong>Query:</strong> Vector borne diseases, especially ticks and tick borne diseases. Onehealth concepts related to vector borne disease. Effects of fire, smoke, and fire prevention on vector borne disease and infectious disease, including empirical research in wildlife and humans. Modeling of infectious diseases, disease ecology, and spatial modeling of disease risk.</p>
-<p><strong>NOTE</strong> My semantic network tool is not working today (Saturday). I’ll have to run this query when the nerds get it fixed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Vector <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Vector.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Vector =</span> Relevance)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sanford Eigenbrode</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Erik Wenninger</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christopher Remien</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scott Nuismer</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alexander Karasev</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">James (Jim) Bull</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">George Newcombe</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stephen Krone</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shirley Luckhart</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Courtney Conway</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pamela Hutchinson</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christine Parent</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Esteban Hernandez-Vargas</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Phillip Wharton</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Benjamin Ridenhour</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kasia Duellman</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Paul Hohenlohe</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Katherine Lee</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Louise-Marie Dandurand</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">James Woodhall</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lisette Waits</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tanya Miura</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shree Singh</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 </section>
 <section id="integrated-list-of-faculty" class="level2">
 <h2 class="anchored" data-anchor-id="integrated-list-of-faculty">Integrated List of Faculty</h2>
 <p>Now we integrate the faculty lists from each data source, maintaining their source affiliations as either a boolean (for advisors) or as the number of semantically relevant publications to each query (for the Semantic Analyses).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Master_List <span class="ot">&lt;-</span> advisors<span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, Advisor)<span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Fire, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Health, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_List)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Master_List <span class="ot">&lt;-</span> advisors<span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, Advisor)<span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Fire, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Health, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Vector, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_List)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -3348,6 +3458,7 @@ vertical-align: -.125em;
 <th style="text-align: right;">Advisor</th>
 <th style="text-align: right;">Fire</th>
 <th style="text-align: right;">Health</th>
+<th style="text-align: right;">Vector</th>
 </tr>
 </thead>
 <tbody>
@@ -3356,10 +3467,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Carol Billing</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3368,16 +3481,19 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Luigi Boschetti</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Erin Brooks</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3386,10 +3502,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Ann Brown</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3398,10 +3516,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Stacey Camp</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3410,10 +3530,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">An Chen</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3422,16 +3544,19 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Katrina Eichner</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Jo Ellen Force</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3440,10 +3565,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Philip Higuera</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3452,10 +3579,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">April Hulet</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3464,10 +3593,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Jason Karl</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3476,10 +3607,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Jennifer Ladino</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3488,16 +3621,19 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Katherine Lee</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Arjan Meddens</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3506,10 +3642,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Beth Newingham</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3518,16 +3656,19 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">8</td>
 <td style="text-align: right;">13</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Timothy Prather</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Janet Rachlow</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3536,28 +3677,33 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Amy Skibiel</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Alistair Smith</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">13</td>
 <td style="text-align: right;">8</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Eva Strand</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Dan Strawn</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3566,10 +3712,12 @@ vertical-align: -.125em;
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Kerri Vierling</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -3578,23 +3726,27 @@ vertical-align: -.125em;
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">12</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Aaron Sparks</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Paul Gessler</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Heather Heward</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
@@ -3602,11 +3754,13 @@ vertical-align: -.125em;
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Jan Eitel</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
@@ -3614,11 +3768,13 @@ vertical-align: -.125em;
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Jim Sprinkle</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
@@ -3626,9 +3782,165 @@ vertical-align: -.125em;
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">John Anderson</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sanford Eigenbrode</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Erik Wenninger</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christopher Remien</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scott Nuismer</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alexander Karasev</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">James (Jim) Bull</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">George Newcombe</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stephen Krone</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shirley Luckhart</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Courtney Conway</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pamela Hutchinson</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christine Parent</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Esteban Hernandez-Vargas</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phillip Wharton</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Benjamin Ridenhour</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kasia Duellman</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paul Hohenlohe</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Louise-Marie Dandurand</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">James Woodhall</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lisette Waits</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tanya Miura</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shree Singh</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
@@ -3643,35 +3955,35 @@ vertical-align: -.125em;
 <h1>RESEARCH EXPENDITURES</h1>
 <p>This analysis uses the exported data for each PI from the sponsored expeditures dashboard (which has very limited access). The data represent expenditures for each researcher on projects where they are the Principal Investigator. These data therefore provide only a partial picture as to the research activity of the faculty in question. Grants on which faculty are CoPI, or where they have some other significant collaborative role, are not associated with their expenditures. <span class="red">Proceed with caution</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Expenditures_grant <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grant Code</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>, <span class="st">`</span><span class="at">TITLE</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sponsor</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Expenditures_grant <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grant Code</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>, <span class="st">`</span><span class="at">TITLE</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sponsor</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by &#39;Grant Code&#39;, &#39;PI&#39;s Name&#39;, &#39;PI&#39;s Home
 Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_grant, <span class="at">file =</span> <span class="st">&quot;Expenditures_grant.csv&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Expenditures_PI <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name=</span><span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_grant, <span class="at">file =</span> <span class="st">&quot;Expenditures_grant.csv&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Expenditures_PI <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name=</span><span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by &#39;PI&#39;s Name&#39;. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_PI, <span class="at">file =</span> <span class="st">&quot;Expenditures_PI.csv&quot;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Expenditures_PI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_PI, <span class="at">file =</span> <span class="st">&quot;Expenditures_PI.csv&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Expenditures_PI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 26%">
-<col style="width: 44%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 45%">
+<col style="width: 13%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3825,6 +4137,18 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">266532.08</td>
 <td style="text-align: right;">7069.70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scott Nuismer</td>
+<td style="text-align: left;">COS Biological Sciences</td>
+<td style="text-align: right;">2783869.98</td>
+<td style="text-align: right;">829001.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shirley Luckhart</td>
+<td style="text-align: left;">CALS Entomology,Plt Pathology,Nemat</td>
+<td style="text-align: right;">3761468.93</td>
+<td style="text-align: right;">986830.15</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tara Hudiburg</td>
@@ -3852,20 +4176,21 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <h2 class="anchored" data-anchor-id="merging-expenditures">Merging Expenditures</h2>
 <p>Let’s merge the expenditures data into the Master List so we have a table with additional context.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Master_Expenditures <span class="ot">&lt;-</span> Master_List<span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Expenditures_PI, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Expenditures)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Master_Expenditures <span class="ot">&lt;-</span> Master_List<span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Expenditures_PI, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Expenditures)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 8%">
-<col style="width: 5%">
+<col style="width: 22%">
 <col style="width: 7%">
-<col style="width: 35%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 32%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3873,6 +4198,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <th style="text-align: right;">Advisor</th>
 <th style="text-align: right;">Fire</th>
 <th style="text-align: right;">Health</th>
+<th style="text-align: right;">Vector</th>
 <th style="text-align: left;">PI’s Home Dept</th>
 <th style="text-align: right;">Total</th>
 <th style="text-align: right;">IDC</th>
@@ -3884,6 +4210,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3891,6 +4218,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Carol Billing</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CEHHS Dept of Curriculum &amp; Instr</td>
@@ -3902,6 +4230,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3911,6 +4240,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">1604580.20</td>
 <td style="text-align: right;">402059.52</td>
@@ -3918,6 +4248,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Erin Brooks</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Soils and Water Systems</td>
@@ -3929,6 +4260,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">266532.08</td>
 <td style="text-align: right;">7069.70</td>
@@ -3936,6 +4268,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Ann Brown</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CEHHS DepartmenTofMovementSciences</td>
@@ -3947,6 +4280,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3954,6 +4288,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Stacey Camp</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -3965,6 +4300,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3972,6 +4308,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">An Chen</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -3983,6 +4320,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3992,6 +4330,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CLASS Culture, Society and Justice</td>
 <td style="text-align: right;">21612.32</td>
 <td style="text-align: right;">7336.13</td>
@@ -3999,6 +4338,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Jo Ellen Force</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4010,6 +4350,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4017,6 +4358,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Philip Higuera</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4028,6 +4370,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">2639223.55</td>
 <td style="text-align: right;">684021.32</td>
@@ -4035,6 +4378,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">April Hulet</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4046,6 +4390,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4053,6 +4398,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Jason Karl</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
@@ -4064,6 +4410,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4071,6 +4418,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Jennifer Ladino</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CLASS English</td>
@@ -4082,6 +4430,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4091,6 +4440,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4098,6 +4448,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Arjan Meddens</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4109,6 +4460,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4116,6 +4468,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Beth Newingham</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4127,6 +4480,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">8</td>
 <td style="text-align: right;">13</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Natural Resources &amp; Society</td>
 <td style="text-align: right;">913773.37</td>
 <td style="text-align: right;">103314.27</td>
@@ -4136,6 +4490,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Plant Science</td>
 <td style="text-align: right;">320469.70</td>
 <td style="text-align: right;">13032.22</td>
@@ -4143,6 +4498,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Janet Rachlow</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4154,6 +4510,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Family Consumer Science</td>
 <td style="text-align: right;">8632778.24</td>
 <td style="text-align: right;">1297211.90</td>
@@ -4163,6 +4520,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Animal, Vet &amp; Food Sciences</td>
 <td style="text-align: right;">567508.43</td>
 <td style="text-align: right;">154666.51</td>
@@ -4172,6 +4530,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">13</td>
 <td style="text-align: right;">8</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">COS Earth and Spatial Sciences</td>
 <td style="text-align: right;">1946839.29</td>
 <td style="text-align: right;">327017.96</td>
@@ -4181,6 +4540,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR College of Natural Resources</td>
 <td style="text-align: right;">4704517.90</td>
 <td style="text-align: right;">305296.00</td>
@@ -4188,6 +4548,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Dan Strawn</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -4199,6 +4560,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">COE Civil &amp; Environmental Eng</td>
 <td style="text-align: right;">1389525.57</td>
 <td style="text-align: right;">353510.69</td>
@@ -4206,6 +4568,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Kerri Vierling</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Fish &amp; Wildlife Sciences</td>
@@ -4217,6 +4580,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">12</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">1096237.30</td>
 <td style="text-align: right;">214727.17</td>
@@ -4226,6 +4590,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">414125.04</td>
 <td style="text-align: right;">133362.35</td>
@@ -4235,6 +4600,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4243,6 +4609,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">Heather Heward</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4253,6 +4620,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">COS Earth and Spatial Sciences</td>
 <td style="text-align: right;">222251.07</td>
 <td style="text-align: right;">16791.94</td>
@@ -4261,6 +4629,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">Jan Eitel</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Natural Resources &amp; Society</td>
 <td style="text-align: right;">1000443.46</td>
@@ -4271,6 +4640,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4279,6 +4649,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">Jim Sprinkle</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4289,6 +4660,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Animal, Vet &amp; Food Sciences</td>
 <td style="text-align: right;">348789.56</td>
 <td style="text-align: right;">76336.29</td>
@@ -4298,12 +4670,234 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CAA Virtual Technology and Design</td>
 <td style="text-align: right;">25761.22</td>
 <td style="text-align: right;">5315.75</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Sanford Eigenbrode</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Erik Wenninger</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Christopher Remien</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scott Nuismer</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">COS Biological Sciences</td>
+<td style="text-align: right;">2783869.98</td>
+<td style="text-align: right;">829001.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alexander Karasev</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">James (Jim) Bull</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">George Newcombe</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stephen Krone</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Shirley Luckhart</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">CALS Entomology,Plt Pathology,Nemat</td>
+<td style="text-align: right;">3761468.93</td>
+<td style="text-align: right;">986830.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Courtney Conway</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pamela Hutchinson</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christine Parent</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Esteban Hernandez-Vargas</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phillip Wharton</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Benjamin Ridenhour</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kasia Duellman</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paul Hohenlohe</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Louise-Marie Dandurand</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">James Woodhall</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lisette Waits</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tanya Miura</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shree Singh</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Daniel Strawn</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4316,6 +4910,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Fish &amp; Wildlife Sciences</td>
 <td style="text-align: right;">558859.35</td>
 <td style="text-align: right;">23499.94</td>
@@ -4325,12 +4920,14 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">4340.79</td>
 <td style="text-align: right;">0.00</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Karen Launchbaugh</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4344,20 +4941,21 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 </div>
 <p>There are quite a few faculty who are derived from the Advisors list that do not show up in the Expenditures analysis. There are a couple reasons for this. First, there are faculty that are no longer at the UI (prominent examples being John Abotzaglu and Krystal Colden). Second, some of these faculty may not have had active research grants as PI since FY 2019. I’ll go ahead an remove those types of people from the list to make things more concise.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Master_Final <span class="ot">&lt;-</span> Master_Expenditures<span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Master_Final <span class="ot">&lt;-</span> Master_Expenditures<span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 8%">
-<col style="width: 5%">
+<col style="width: 19%">
 <col style="width: 7%">
-<col style="width: 35%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 33%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -4365,6 +4963,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <th style="text-align: right;">Advisor</th>
 <th style="text-align: right;">Fire</th>
 <th style="text-align: right;">Health</th>
+<th style="text-align: right;">Vector</th>
 <th style="text-align: left;">PI’s Home Dept</th>
 <th style="text-align: right;">Total</th>
 <th style="text-align: right;">IDC</th>
@@ -4376,6 +4975,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CEHHS Dept of Curriculum &amp; Instr</td>
 <td style="text-align: right;">3917.57</td>
 <td style="text-align: right;">0.00</td>
@@ -4385,6 +4985,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">1604580.20</td>
 <td style="text-align: right;">402059.52</td>
@@ -4392,6 +4993,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Erin Brooks</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Soils and Water Systems</td>
@@ -4403,6 +5005,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">266532.08</td>
 <td style="text-align: right;">7069.70</td>
@@ -4410,6 +5013,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Ann Brown</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CEHHS DepartmenTofMovementSciences</td>
@@ -4421,6 +5025,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CLASS Culture, Society and Justice</td>
 <td style="text-align: right;">21612.32</td>
 <td style="text-align: right;">7336.13</td>
@@ -4428,6 +5033,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Tara Hudiburg</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
@@ -4439,6 +5045,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">1708430.39</td>
 <td style="text-align: right;">335407.85</td>
@@ -4446,6 +5053,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="odd">
 <td style="text-align: left;">Jennifer Ladino</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CLASS English</td>
@@ -4457,6 +5065,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">8</td>
 <td style="text-align: right;">13</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Natural Resources &amp; Society</td>
 <td style="text-align: right;">913773.37</td>
 <td style="text-align: right;">103314.27</td>
@@ -4465,6 +5074,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">Timothy Prather</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Plant Science</td>
 <td style="text-align: right;">320469.70</td>
@@ -4475,6 +5085,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Family Consumer Science</td>
 <td style="text-align: right;">8632778.24</td>
 <td style="text-align: right;">1297211.90</td>
@@ -4484,6 +5095,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Animal, Vet &amp; Food Sciences</td>
 <td style="text-align: right;">567508.43</td>
 <td style="text-align: right;">154666.51</td>
@@ -4493,6 +5105,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">13</td>
 <td style="text-align: right;">8</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">COS Earth and Spatial Sciences</td>
 <td style="text-align: right;">1946839.29</td>
 <td style="text-align: right;">327017.96</td>
@@ -4502,6 +5115,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">5</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR College of Natural Resources</td>
 <td style="text-align: right;">4704517.90</td>
 <td style="text-align: right;">305296.00</td>
@@ -4509,6 +5123,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <tr class="even">
 <td style="text-align: left;">Daniele Tonina</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">COE Civil &amp; Environmental Eng</td>
@@ -4520,6 +5135,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Fish &amp; Wildlife Sciences</td>
 <td style="text-align: right;">990007.63</td>
 <td style="text-align: right;">97662.73</td>
@@ -4529,6 +5145,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">12</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">1096237.30</td>
 <td style="text-align: right;">214727.17</td>
@@ -4538,6 +5155,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">414125.04</td>
 <td style="text-align: right;">133362.35</td>
@@ -4546,6 +5164,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: left;">Jeffrey Hicke</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">COS Earth and Spatial Sciences</td>
 <td style="text-align: right;">222251.07</td>
@@ -4556,6 +5175,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Natural Resources &amp; Society</td>
 <td style="text-align: right;">1000443.46</td>
 <td style="text-align: right;">114414.06</td>
@@ -4565,6 +5185,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CALS Animal, Vet &amp; Food Sciences</td>
 <td style="text-align: right;">348789.56</td>
 <td style="text-align: right;">76336.29</td>
@@ -4574,12 +5195,34 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CAA Virtual Technology and Design</td>
 <td style="text-align: right;">25761.22</td>
 <td style="text-align: right;">5315.75</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Scott Nuismer</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">COS Biological Sciences</td>
+<td style="text-align: right;">2783869.98</td>
+<td style="text-align: right;">829001.96</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shirley Luckhart</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">CALS Entomology,Plt Pathology,Nemat</td>
+<td style="text-align: right;">3761468.93</td>
+<td style="text-align: right;">986830.15</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Daniel Strawn</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4592,6 +5235,7 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Fish &amp; Wildlife Sciences</td>
 <td style="text-align: right;">558859.35</td>
 <td style="text-align: right;">23499.94</td>
@@ -4601,12 +5245,14 @@ Dept&#39;, &#39;TITLE&#39;. You can override using the `.groups` argument.</code
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: left;">CNR Forest, Rangeland &amp; Fire Sci</td>
 <td style="text-align: right;">4340.79</td>
 <td style="text-align: right;">0.00</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Karen Launchbaugh</td>
+<td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -5063,161 +5709,167 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;FIRESTARS&quot;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># GOAL</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>Assemble a list of faculty whose research is strategically aligned with the FIRESTARS proposal.</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># PROPOSAL SYNOPSIS</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### Developing Research Capabilities in Wildland Fire: Fostering Interdisciplinary Research and Strategic Training for Advancing Resilient Systems (FIRESTARS).</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>**Proposing Unit:** College of Natural Resources</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>**Proposing Team:** Jessica Miesel (CNR FRFS), Assoc. Prof., Director, IFIRE Combustion Laboratory; Alistair Smith (CNS ESS), Professor and Department Chair; Leda Kobziar (CNR FRFS), Assoc. Prof., Director of Master in Natural Resources Program; Amy Skibiel (CALS, AVFS), Assoc. Prof. </span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Project Summary:</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. </span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>To further strengthen UI’s widely recognized leadership in wildland fire research and education in the natural sciences and human dimensions, we believe that UI can step into a strategically important role in addressing questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. </span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>This VPRED proposal seeks strategic investment for expanding research capabilities that contribute to our ongoing initiative to Foster Interdisciplinary Research and Strategic Training for Advancing Resilient Systems related to wildland fire (FIRESTARS). Our specific objectives for this VPRED application are to:</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Expand IFIRE Combustion Laboratory capabilities to enable foundational research necessary to address wildfire impacts on human health and animal health; and</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Leverage the current and proposed IFIRE Combustion Laboratory capabilities to develop collaborative research events for early-career researchers within and beyond UI, with deliverables that contribute to new externally sponsored research.</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>Our long-term vision is to support and expand UI’s leadership in fire science across the full breadth of scientific disciplines, from the physical sciences to the humanities. Strategic investment in expanding research capabilities and partnerships for investigating wildfire impacts on human health will achieve lasting impact by augmenting the University of Idaho’s status as a leader in wildland fire research and education with new leadership in human health-smoke relationships. This investment will provide unique opportunities for UI faculty and students and attract partnerships that lead to significant new external funding streams.</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="fu"># ASSEMBLING RELATED FACULTY </span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Graduate Advisors</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>This data set is a list of advisors from Jessica.  These advisors have mentored at least one student whose thesis or dissertation contained keywords relevant to fire science.</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>advisors <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Advisors.xlsx&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">separate</span>(Advisors, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Last&quot;</span>, <span class="st">&quot;First&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Name =</span> <span class="fu">paste</span>(First, Last))<span class="sc">%&gt;%</span></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Advisor =</span> <span class="dv">1</span>)</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Semantic Analysis</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>These lists are the faculty identified using the UI Collaboration Net prototype using the query specified for each group: Fire, Health, and Vector Borne Disease.</span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Similarity: Fire Science</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>**Query**: Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. </span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>Fire <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;fire.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Fire =</span> Relevance)</span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Fire)</span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Health</span></span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>**Query:** Health effects of smoke, fire, forest fire.  Health and safety of fire fighting professionals.  Onehealth concepts as they relate to forest fires. RESEARCH questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. </span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>Health <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;health.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Health =</span> Relevance)</span>
-<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Health)</span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Vector Disease</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>**Query:** Vector borne diseases, especially ticks and tick borne diseases.  Onehealth concepts related to vector borne disease.  Effects of fire, smoke, and fire prevention on vector borne disease and infectious disease, including empirical research in wildlife and humans.  Modeling of infectious diseases, disease ecology, and spatial modeling of disease risk.</span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>**NOTE** My semantic network tool is not working today (Saturday).  I&#39;ll have to run this query when the nerds get it fixed.</span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrated List of Faculty</span></span>
-<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Now we integrate the faculty lists from each data source, maintaining their source affiliations as either a boolean (for advisors) or as the number of semantically relevant publications to each query (for the Semantic Analyses).</span>
-<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>Master_List <span class="ot">&lt;-</span> advisors<span class="sc">%&gt;%</span></span>
-<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, Advisor)<span class="sc">%&gt;%</span></span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Fire, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Health, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
-<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_List)</span>
-<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a><span class="fu"># RESEARCH EXPENDITURES</span></span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>This analysis uses the exported data for each PI from the sponsored expeditures dashboard (which has very limited access).  The data represent expenditures for each researcher on projects where they are the Principal Investigator.  These data therefore provide only a partial picture as to the research activity of the faculty in question.  Grants on which faculty are CoPI, or where they have some other significant collaborative role, are not associated with their expenditures.  <span class="co">[</span><span class="ot">Proceed with caution</span><span class="co">]</span>{.red}.</span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;Expenditures&quot;</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>csv_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> path, <span class="at">pattern =</span> <span class="st">&quot;*.csv&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>Expenditures <span class="ot">&lt;-</span> csv_files <span class="sc">%&gt;%</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_csv)</span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>Expenditures_grant <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grant Code</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>, <span class="st">`</span><span class="at">TITLE</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sponsor</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_grant, <span class="at">file =</span> <span class="st">&quot;Expenditures_grant.csv&quot;</span>)</span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>Expenditures_PI <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name=</span><span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>)</span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_PI, <span class="at">file =</span> <span class="st">&quot;Expenditures_PI.csv&quot;</span>)</span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Expenditures_PI)</span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merging Expenditures</span></span>
-<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>Let&#39;s merge the expenditures data into the Master List so we have a table with additional context.</span>
-<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a>Master_Expenditures <span class="ot">&lt;-</span> Master_List<span class="sc">%&gt;%</span></span>
-<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Expenditures_PI, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
-<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Expenditures)</span>
-<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a>There are quite a few faculty who are derived from the Advisors list that do not show up in the Expenditures analysis.  There are a couple reasons for this.  First, there are faculty that are no longer at the UI (prominent examples being John Abotzaglu and Krystal Colden).  Second, some of these faculty may not have had active research grants as PI since FY 2019.  I&#39;ll go ahead an remove those types of people from the list to make things more concise.</span>
-<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>Master_Final <span class="ot">&lt;-</span> Master_Expenditures<span class="sc">%&gt;%</span></span>
-<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Final)</span>
-<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;FIRESTARS&quot;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># GOAL</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>Assemble a list of faculty whose research is strategically aligned with the FIRESTARS proposal.</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># PROPOSAL SYNOPSIS</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### Developing Research Capabilities in Wildland Fire: Fostering Interdisciplinary Research and Strategic Training for Advancing Resilient Systems (FIRESTARS).</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>**Proposing Unit:** College of Natural Resources</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>**Proposing Team:** Jessica Miesel (CNR FRFS), Assoc. Prof., Director, IFIRE Combustion Laboratory; Alistair Smith (CNS ESS), Professor and Department Chair; Leda Kobziar (CNR FRFS), Assoc. Prof., Director of Master in Natural Resources Program; Amy Skibiel (CALS, AVFS), Assoc. Prof. </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Project Summary:</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>To further strengthen UI’s widely recognized leadership in wildland fire research and education in the natural sciences and human dimensions, we believe that UI can step into a strategically important role in addressing questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. </span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>This VPRED proposal seeks strategic investment for expanding research capabilities that contribute to our ongoing initiative to Foster Interdisciplinary Research and Strategic Training for Advancing Resilient Systems related to wildland fire (FIRESTARS). Our specific objectives for this VPRED application are to:</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Expand IFIRE Combustion Laboratory capabilities to enable foundational research necessary to address wildfire impacts on human health and animal health; and</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Leverage the current and proposed IFIRE Combustion Laboratory capabilities to develop collaborative research events for early-career researchers within and beyond UI, with deliverables that contribute to new externally sponsored research.</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>Our long-term vision is to support and expand UI’s leadership in fire science across the full breadth of scientific disciplines, from the physical sciences to the humanities. Strategic investment in expanding research capabilities and partnerships for investigating wildfire impacts on human health will achieve lasting impact by augmenting the University of Idaho’s status as a leader in wildland fire research and education with new leadership in human health-smoke relationships. This investment will provide unique opportunities for UI faculty and students and attract partnerships that lead to significant new external funding streams.</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="fu"># ASSEMBLING RELATED FACULTY </span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Graduate Advisors</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>This data set is a list of advisors from Jessica.  These advisors have mentored at least one student whose thesis or dissertation contained keywords relevant to fire science.</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>advisors <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Advisors.xlsx&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">separate</span>(Advisors, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Last&quot;</span>, <span class="st">&quot;First&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Name =</span> <span class="fu">paste</span>(First, Last))<span class="sc">%&gt;%</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Advisor =</span> <span class="dv">1</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Semantic Analysis</span></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>These lists are the faculty identified using the UI Collaboration Net prototype using the query specified for each group: Fire, Health, and Vector Borne Disease.</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Similarity: Fire Science</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>**Query**: Wildland fire science is an area of increasingly high priority nationally and globally, as wildfires become more frequent and catastrophic for human and ecological communities alike. The University of Idaho already is recognized as a leader in wildland fire research, education, and professional training, with wide representation of faculty expertise, partnerships with state and federal agencies, leadership in fire science outreach organizations across the US, and unique facilities for fire experimentation, measurements, and modelling. Our programs equip current and future professionals for leadership in fire policy and management across the world, providing more academic courses addressing wildland fire than any other university in the world. The UI’s leadership in fire research and education is supported by unique facilities and resources (e.g. UI Experimental Forest, McCall Field Campus, and the Taylor Wilderness Research Station), including the Idaho Fire Initiative Research and Education Combustion Laboratory (IFIRE Laboratory) which is the only wildland fire combustion laboratory located on a university campus in the United States. The IFIRE laboratory was developed to study combustion dynamics and smoke emissions to improve remote sensing observations yet in fact has been leveraged for a much wider range of research topics, including supporting multiple external research awards addressing plant physiological responses, soil micro-organisms, and livestock health. Most work to date has focused on the natural sciences, but the health dimension of wildland fire is an exciting new frontier with recent significant funding announcements calling for proposals on this topic. </span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>Fire <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;fire.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Fire =</span> Relevance)</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Fire)</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Health</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>**Query:** Health effects of smoke, fire, forest fire.  Health and safety of fire fighting professionals.  Onehealth concepts as they relate to forest fires. RESEARCH questions at the intersection between wildland fire and human and animal health. Pressing issues include the need to understand smoke impacts on human health – both for public health in an increasingly urbanized west – and for wildland firefighter health and safety. The foundational and applied science knowledge needed to address these questions remains critically limited globally, despite its importance due to increasing human population sizes, increasing expansion of the wildland-urban interfaces, and increasing wildfire frequency, size, and severity. Nationwide, few researchers address these topics, and no other universities support a wildfire combustion facility such as exists via the IFIRE laboratory. </span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>Health <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;health.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Health =</span> Relevance)</span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Health)</span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### Semantic Vector Disease</span></span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>**Query:** Vector borne diseases, especially ticks and tick borne diseases.  Onehealth concepts related to vector borne disease.  Effects of fire, smoke, and fire prevention on vector borne disease and infectious disease, including empirical research in wildlife and humans.  Modeling of infectious diseases, disease ecology, and spatial modeling of disease risk.</span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>Vector <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Vector.csv&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Vector =</span> Relevance)</span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Vector)</span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrated List of Faculty</span></span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a>Now we integrate the faculty lists from each data source, maintaining their source affiliations as either a boolean (for advisors) or as the number of semantically relevant publications to each query (for the Semantic Analyses).</span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a>Master_List <span class="ot">&lt;-</span> advisors<span class="sc">%&gt;%</span></span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, Advisor)<span class="sc">%&gt;%</span></span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Fire, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Health, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Vector, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_List)</span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a><span class="fu"># RESEARCH EXPENDITURES</span></span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a>This analysis uses the exported data for each PI from the sponsored expeditures dashboard (which has very limited access).  The data represent expenditures for each researcher on projects where they are the Principal Investigator.  These data therefore provide only a partial picture as to the research activity of the faculty in question.  Grants on which faculty are CoPI, or where they have some other significant collaborative role, are not associated with their expenditures.  <span class="co">[</span><span class="ot">Proceed with caution</span><span class="co">]</span>{.red}.</span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;Expenditures&quot;</span></span>
+<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a>csv_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> path, <span class="at">pattern =</span> <span class="st">&quot;*.csv&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a>Expenditures <span class="ot">&lt;-</span> csv_files <span class="sc">%&gt;%</span></span>
+<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_csv)</span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a>Expenditures_grant <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Grant Code</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>, <span class="st">`</span><span class="at">TITLE</span><span class="st">`</span>, <span class="st">`</span><span class="at">Sponsor</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_grant, <span class="at">file =</span> <span class="st">&quot;Expenditures_grant.csv&quot;</span>)</span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a>Expenditures_PI <span class="ot">&lt;-</span> Expenditures <span class="sc">%&gt;%</span></span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>, <span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Total Expenditure</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>            <span class="at">IDC =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Overhead</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name=</span><span class="st">`</span><span class="at">PI&#39;s Name</span><span class="st">`</span>)</span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(Expenditures_PI, <span class="at">file =</span> <span class="st">&quot;Expenditures_PI.csv&quot;</span>)</span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Expenditures_PI)</span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merging Expenditures</span></span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>Let&#39;s merge the expenditures data into the Master List so we have a table with additional context.</span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>Master_Expenditures <span class="ot">&lt;-</span> Master_List<span class="sc">%&gt;%</span></span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(Expenditures_PI, <span class="at">by =</span> <span class="st">&quot;Name&quot;</span>)</span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Expenditures)</span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a>There are quite a few faculty who are derived from the Advisors list that do not show up in the Expenditures analysis.  There are a couple reasons for this.  First, there are faculty that are no longer at the UI (prominent examples being John Abotzaglu and Krystal Colden).  Second, some of these faculty may not have had active research grants as PI since FY 2019.  I&#39;ll go ahead an remove those types of people from the list to make things more concise.</span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>Master_Final <span class="ot">&lt;-</span> Master_Expenditures<span class="sc">%&gt;%</span></span>
+<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(<span class="st">`</span><span class="at">PI&#39;s Home Dept</span><span class="st">`</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Master_Final)</span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

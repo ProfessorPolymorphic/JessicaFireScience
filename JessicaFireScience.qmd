@@ -83,7 +83,12 @@ knitr::kable(Health)
 
 **Query:** Vector borne diseases, especially ticks and tick borne diseases.  Onehealth concepts related to vector borne disease.  Effects of fire, smoke, and fire prevention on vector borne disease and infectious disease, including empirical research in wildlife and humans.  Modeling of infectious diseases, disease ecology, and spatial modeling of disease risk.
 
-**NOTE** My semantic network tool is not working today (Saturday).  I'll have to run this query when the nerds get it fixed.
+```{r}
+Vector <- read.csv("Vector.csv")%>%
+  rename(Vector = Relevance)
+
+knitr::kable(Vector)
+```
 
 ## Integrated List of Faculty
 
@@ -93,7 +98,8 @@ Now we integrate the faculty lists from each data source, maintaining their sour
 Master_List <- advisors%>%
   select(Name, Advisor)%>%
   full_join(Fire, by = "Name")%>%
-  full_join(Health, by = "Name")
+  full_join(Health, by = "Name")%>%
+  full_join(Vector, by = "Name")
 
 knitr::kable(Master_List)
 ```
